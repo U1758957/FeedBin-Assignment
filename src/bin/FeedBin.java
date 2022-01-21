@@ -90,4 +90,12 @@ public class FeedBin {
 
     }
 
-}
+    /*
+    Accessor methods for each FeedBin instance variable
+     */
+    public int getBinNumber() { return binNumber; }
+    public String getProductName() { return productName; }
+    public double getMaxVolume() { return maxVolume; }
+    public double getCurrentVolume() { return currentVolume; }
+
+} // Class FeedBin
