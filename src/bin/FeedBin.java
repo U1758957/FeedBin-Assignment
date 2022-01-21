@@ -73,4 +73,21 @@ public class FeedBin {
 
     }
 
+    /**
+     * Returns actual volume removed if insufficient in bin to remove full amount requested
+     * @param volume the volume of product to remove from the bin in cubic meters
+     * @return the amount of product removed (may be less than requested)
+     */
+    public double removeProduct(double volume) {
+
+        if (currentVolume >= volume) this.currentVolume -= volume;
+        else {
+            volume = currentVolume;
+            this.currentVolume = 0.0d;
+        }
+
+        return volume; // Actual amount removed - may be less than requested
+
+    }
+
 }
