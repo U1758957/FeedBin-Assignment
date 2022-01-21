@@ -37,4 +37,19 @@ public class FeedBin {
 
     }
 
+    /**
+     * Used to change the product assigned to the bin.
+     * Can only do this if the bin is empty, i.e., use flush() method first
+     * @param newName the new product to put in the bin
+     * @return true if a new product was added via the current volume being empty, false otherwise
+     */
+    public boolean setProductName(String newName) {
+
+        if (currentVolume == 0.0d) {
+            this.productName = newName;
+            return true;
+        } else return false;
+
+    }
+
 }
