@@ -15,4 +15,26 @@ package bin;
  *
  */
 public class FeedBin {
+
+    // FeedBin instance variables
+    private int binNumber;
+    private String productName;
+    private double maxVolume;
+    private double currentVolume;
+
+    /**
+     * FeedBin Constructor
+     * @param binNumber the bin identifier
+     * @param productName the product in the bin
+     */
+    public FeedBin(int binNumber, String productName) {
+
+        this.binNumber = binNumber; // Bin identifier
+        this.productName = productName; // Product in bin
+
+        this.maxVolume = 40.0d; // Maximum capacity in cubic meters
+        this.currentVolume = 0.0d; // Bin starts in  the empty state
+
+    }
+
 }
