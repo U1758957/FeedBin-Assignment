@@ -40,8 +40,8 @@ public class FeedBin {
     /**
      * Used to change the product assigned to the bin.
      * Can only do this if the bin is empty, i.e., use flush() method first
-     * @param newName the new product to put in the bin
-     * @return true if a new product was added via the current volume being empty, false otherwise
+     * @param newName the new product name to be used in the bin
+     * @return true if a new product name was added via the current volume being empty, false otherwise
      */
     public boolean setProductName(String newName) {
 
@@ -57,6 +57,20 @@ public class FeedBin {
      */
     public void flush() {
         this.currentVolume = 0.0d;
+    }
+
+    /**
+     * Can only add if there is sufficient room
+     * @param volume the volume of product to be added in cubic meters
+     * @return true if the volume was added due to sufficient room, false otherwise
+     */
+    public boolean addProduct(double volume) {
+
+        if (maxVolume >= (currentVolume + volume)) {
+            this.currentVolume += volume;
+            return true;
+        } else return false;
+
     }
 
 }
