@@ -52,4 +52,11 @@ public class FeedBin {
 
     }
 
+    /**
+     * Used to completely empty the bin
+     */
+    public void flush() {
+        this.currentVolume = 0.0d;
+    }
+
 }
