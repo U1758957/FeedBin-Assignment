@@ -6,6 +6,20 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ *
+ * FeedBinGUI.java
+ *
+ * @author Anne Grundy
+ *
+ * Modified by Gary Allen
+ * Modified by Zac King (U1758957)
+ *
+ * Latest Update February 2022
+ *
+ * @version 1.2
+ *
+ */
 public class FeedBinGUI extends JFrame {
 
     private JPanel panelMain;
