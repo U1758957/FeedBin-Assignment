@@ -1,4 +1,4 @@
-package bin;
+package controller;
 
 /**
  *
@@ -14,7 +14,7 @@ package bin;
  * as used in the factory production of animal feedstuffs
  *
  */
-public class FeedBin {
+public class ModelFeedBin {
 
     // FeedBin instance variables
     private final int binNumber;
@@ -27,7 +27,7 @@ public class FeedBin {
      * @param binNumber the bin identifier
      * @param productName the product in the bin
      */
-    public FeedBin(int binNumber, String productName) {
+    public ModelFeedBin(int binNumber, String productName) {
 
         this.binNumber = binNumber; // Bin identifier
         this.productName = productName; // Product in bin

@@ -1,6 +1,6 @@
 package gui;
 
-import bin.FeedBin;
+import controller.ModelFeedBin;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,11 +32,11 @@ public class FeedBinGUI extends JFrame {
     private JMenuItem flush;
     private JMenuItem exit;
 
-    private FeedBin bin; // Here's the system object behind the interface
+    private ModelFeedBin bin; // Here's the system object behind the interface
 
     public FeedBinGUI() {
 
-        this.bin = new FeedBin(34, "Weety Bits"); // Create a Feed Bin
+        this.bin = new ModelFeedBin(34, "Weety Bits"); // Create a Feed Bin
 
         // Create the Menu Components
 
@@ -106,7 +106,7 @@ Inspect Menu Option Dialog Class
  */
 class InspectDialog extends JDialog {
 
-    private FeedBin bin;
+    private ModelFeedBin bin;
 
     private Box boxInfo;
     private Box boxButton;
@@ -117,7 +117,7 @@ class InspectDialog extends JDialog {
     /*
     InspectDialog Constructor
      */
-    InspectDialog(FeedBinGUI parent, boolean modal, FeedBin binObject) {
+    InspectDialog(FeedBinGUI parent, boolean modal, ModelFeedBin binObject) {
 
         super(parent, "Bin Inspection", modal); // Call Superclass Constructor
 
@@ -158,7 +158,7 @@ class InspectDialog extends JDialog {
 
 class FillDialog extends JDialog implements ActionListener {
 
-    private FeedBin bin;
+    private ModelFeedBin bin;
     private JTextField input;
     private JPanel panel1;
     private JPanel panel2;
@@ -170,7 +170,7 @@ class FillDialog extends JDialog implements ActionListener {
     /*
     FillDialog Constructor
      */
-    FillDialog(FeedBinGUI parent, boolean modal, FeedBin binObject) {
+    FillDialog(FeedBinGUI parent, boolean modal, ModelFeedBin binObject) {
 
         super(parent, "Bin Filling", modal); // Call Superclass Constructor
 
