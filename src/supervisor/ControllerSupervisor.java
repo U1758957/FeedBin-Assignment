@@ -1,4 +1,10 @@
 package supervisor;
 
-public class ControllerSupervisor {
+public class ControllerSupervisor implements Runnable {
+
+    @Override
+    public void run() {
+
+    }
+
 }
