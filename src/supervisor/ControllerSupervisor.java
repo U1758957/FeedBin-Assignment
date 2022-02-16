@@ -21,7 +21,7 @@ public class ControllerSupervisor implements Runnable {
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
-                System.err.println("Error : " + e.getClass().getName() + " was interrupted!");
+                System.err.println("Error : " + getClass().getName() + " was interrupted!");
                 e.printStackTrace(); // Friendly message followed by stack trace
             }
 
