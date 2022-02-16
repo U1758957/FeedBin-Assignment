@@ -12,15 +12,21 @@ import java.util.concurrent.Executors;
 
 public class NewFeedBinGUI extends JFrame {
 
-    private final ModelFeedBin[] bins;
+    private ModelFeedBin[] bins;
 
-    private final ControllerFeedBin controller;
-    private final ControllerSupervisor supervisor;
+    private ControllerFeedBin controller;
+    private ControllerSupervisor supervisor;
 
-    private final ExecutorService controllerService;
+    private ExecutorService controllerService;
     public static CountDownLatch controllerLatch;
 
     public NewFeedBinGUI() {
+
+        initNonGUIComponents();
+
+    }
+
+    private void initNonGUIComponents() {
 
         this.bins = new ModelFeedBin[3]; // 3 bins as defined in the specification
 
