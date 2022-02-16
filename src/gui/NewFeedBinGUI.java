@@ -1,9 +1,13 @@
 package gui;
 
+import bin.FeedBin;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class NewFeedBinGUI extends JFrame {
+
+    private final FeedBin[] bins = new FeedBin[3]; // 3 bins as defined in the specification
 
     public NewFeedBinGUI() {
 
