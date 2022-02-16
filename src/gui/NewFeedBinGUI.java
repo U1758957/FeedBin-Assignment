@@ -36,6 +36,11 @@ public class NewFeedBinGUI extends JFrame {
         this.controllerService = Executors.newFixedThreadPool(2); // 2 controllers, so 2 threads.
         controllerLatch = new CountDownLatch(1); // Used to tell threads to shut down.
 
+        this.controllerService.submit(controller);
+        this.controllerService.submit(supervisor);
+
+        this.controllerService.shutdown(); // Just tells the JVM that the service will not be accepting new submits
+
     }
 
     public static void main(String[] args) {
