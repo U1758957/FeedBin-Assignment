@@ -1,17 +1,25 @@
 package gui;
 
+import controller.ControllerFeedBin;
 import controller.ModelFeedBin;
+import supervisor.ControllerSupervisor;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class NewFeedBinGUI extends JFrame {
 
-    private final ModelFeedBin[] bins = new ModelFeedBin[3]; // 3 bins as defined in the specification
+    private final ModelFeedBin[] bins;
+
+    private final ControllerFeedBin controller;
+    private final ControllerSupervisor supervisor;
 
     public NewFeedBinGUI() {
 
+        this.bins = new ModelFeedBin[3]; // 3 bins as defined in the specification
 
+        this.controller = new ControllerFeedBin(bins);
+        this.supervisor = new ControllerSupervisor(bins);
 
     }
 
