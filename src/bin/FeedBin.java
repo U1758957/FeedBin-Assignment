@@ -17,9 +17,9 @@ package bin;
 public class FeedBin {
 
     // FeedBin instance variables
-    private int binNumber;
+    private final int binNumber;
     private String productName;
-    private double maxVolume;
+    private final double maxVolume;
     private double currentVolume;
 
     /**
