@@ -63,6 +63,20 @@ public class NewFeedBinGUI extends JFrame {
 
         });
 
+        buttonBinController.addActionListener(e -> {
+
+            this.panelSupervisor.setVisible(false);
+            this.panelBinController.setVisible(true);
+
+        });
+
+        buttonSupervisor.addActionListener(e -> {
+
+            this.panelBinController.setVisible(false);
+            this.panelSupervisor.setVisible(true);
+
+        });
+
     }
 
     private void initGUIComponents() {
@@ -76,6 +90,8 @@ public class NewFeedBinGUI extends JFrame {
         this.setPreferredSize(new Dimension(400, 200));
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null); // Spawns GUI at the center of the screen
+        this.panelSupervisor.setVisible(false);
+        this.panelBinController.setVisible(true);
         this.pack();
         this.setVisible(true);
 
