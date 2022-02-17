@@ -19,10 +19,24 @@ public class NewFeedBinGUI extends JFrame {
 
     private ExecutorService controllerService;
     public static CountDownLatch controllerLatch;
+    private JPanel panelMain;
 
     public NewFeedBinGUI() {
 
+        initGUIComponents();
         initNonGUIComponents();
+
+    }
+
+    private void initGUIComponents() {
+
+        this.setContentPane(panelMain);
+        this.setTitle("Feed Bin Demo");
+        this.setPreferredSize(new Dimension(400, 200));
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null); // Spawns GUI at the center of the screen
+        this.pack();
+        this.setVisible(true);
 
     }
 
@@ -45,12 +59,13 @@ public class NewFeedBinGUI extends JFrame {
 
     public static void main(String[] args) {
 
-        NewFeedBinGUI demo = new NewFeedBinGUI();
-        demo.setTitle("Feed Bin Demo");
-        demo.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        demo.setSize(new Dimension(400, 200));
-        demo.setLocationRelativeTo(null); // Spawns GUI in the center of your screen
-        demo.setVisible(true);
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            System.err.println("Warning: No system look-and-feel found, using default Swing look-and-feel");
+        }
+
+        SwingUtilities.invokeLater(NewFeedBinGUI::new);
 
     }
 
