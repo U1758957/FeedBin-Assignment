@@ -31,8 +31,6 @@ public class NewFeedBinGUI extends JFrame {
     private JButton buttonExit;
     private JPanel panelBinController;
     private JPanel panelSupervisor;
-    private JCheckBox checkBox1;
-    private JRadioButton radioButton1;
 
     public NewFeedBinGUI() {
 
