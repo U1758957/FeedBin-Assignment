@@ -20,6 +20,10 @@ public class NewFeedBinGUI extends JFrame {
     private ExecutorService controllerService;
     public static CountDownLatch controllerLatch;
     private JPanel panelMain;
+    private JPanel panelMenu;
+    private JButton buttonBinController;
+    private JButton buttonSupervisor;
+    private JButton buttonExit;
 
     public NewFeedBinGUI() {
 
@@ -29,6 +33,10 @@ public class NewFeedBinGUI extends JFrame {
     }
 
     private void initGUIComponents() {
+
+        this.buttonBinController.setText("Bin Controller");
+        this.buttonSupervisor.setText("Supervisor");
+        this.buttonExit.setText("Exit");
 
         this.setContentPane(panelMain);
         this.setTitle("Feed Bin Demo");
