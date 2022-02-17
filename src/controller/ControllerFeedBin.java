@@ -6,47 +6,47 @@ public class ControllerFeedBin implements Runnable {
 
     private final ModelFeedBin[] bins;
 
+    private volatile int binNumber;
+    private volatile int operation;
+    private volatile String value;
+
     public ControllerFeedBin(ModelFeedBin[] bins) {
         this.bins = bins;
+        this.binNumber = 0;
+        this.operation = -1;
     }
 
-    private void setProductName(int binNumber, String newProductName) {
-
-        boolean isNameChanged = this.bins[binNumber].setProductName(newProductName);
-
-        if (! isNameChanged); // TODO: 17/02/2022 Notify the client that they could not change the name
-
+    private boolean setProductName(int binNumber, String newProductName) {
+        return this.bins[binNumber].setProductName(newProductName);
     }
 
     private void flush(int binNumber) {
         this.bins[binNumber].flush();
     }
 
-    private void addProduct(int binNumber, double volume) {
-
-        boolean isProductAdded = this.bins[binNumber].addProduct(volume);
-
-        if (! isProductAdded); // TODO: 17/02/2022 Notify the client that they could not add the product
-
+    private boolean addProduct(int binNumber, double volume) {
+        return this.bins[binNumber].addProduct(volume);
     }
 
-    private void removeProduct(int binNumber, double volume) {
-
-        double removedProduct = this.bins[binNumber].removeProduct(volume);
-
-        // TODO: 17/02/2022 Place the removed volume into the buffer when it's made
-
+    private double removeProduct(int binNumber, double volume) {
+        return this.bins[binNumber].removeProduct(volume);
     }
 
-    private void inspectBin(int binNumber) {
+    private String[] inspectBin(int binNumber) {
 
-        int binNo = this.bins[binNumber].getBinNumber(); // Kind of moot, but doing it for sake of completeness
+        String binNo = String.valueOf(this.bins[binNumber].getBinNumber()); // Kind of moot, but doing it for sake of completeness
         String productName = this.bins[binNumber].getProductName();
-        double maxVolume = this.bins[binNumber].getMaxVolume();
-        double currentVolume = this.bins[binNumber].getCurrentVolume();
+        String maxVolume = String.valueOf(this.bins[binNumber].getMaxVolume());
+        String currentVolume = String.valueOf(this.bins[binNumber].getCurrentVolume());
 
-        // TODO: 17/02/2022 Create dialogue box showing the stats for the bin for the client
+        return new String[] {binNo, productName, maxVolume, currentVolume};
 
+    }
+
+    public void issueOrder(int binNumber, int operation, String value) {
+        this.binNumber = binNumber;
+        this.operation = operation;
+        this.value = value;
     }
 
     @Override
@@ -54,7 +54,54 @@ public class ControllerFeedBin implements Runnable {
 
         while (NewFeedBinGUI.controllerLatch.getCount() > 0) {
 
-            // Critical section here
+            if (operation > -1) {
+
+                switch (operation) {
+
+                    case 0:
+
+                        boolean isProductNameSet = setProductName(binNumber, value);
+
+                        if (! isProductNameSet); // TODO: 17/02/2022 Notify client that name cannot be changed
+
+                        break;
+
+                    case 1:
+
+                        flush(binNumber);
+                        break;
+
+                    case 2:
+
+                        boolean isProductAdded = addProduct(binNumber, Double.parseDouble(value));
+                        // Double parse-ability is guaranteed by the front-end
+
+                        if (! isProductAdded); // TODO: 17/02/2022 Notify client that amount cannot be added
+
+                        break;
+
+                    case 3:
+
+                        double removedProduct = removeProduct(binNumber, Double.parseDouble(value));
+                        // Double parse-ability is guaranteed by the front-end
+
+                        // TODO: 17/02/2022 Removed product amount is fed into a buffer for the other thread
+
+                        break;
+
+                    case 4:
+
+                        String[] binInformation = inspectBin(binNumber);
+
+                        // TODO: 17/02/2022 Show dialogue informing the client of the bin stats
+
+                        break;
+
+                }
+
+                this.operation = -1;
+
+            }
 
             try {
                 Thread.sleep(1L);
