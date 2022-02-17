@@ -18,13 +18,15 @@ public class ControllerFeedBin implements Runnable {
             // Critical section here
 
             try {
-                Thread.sleep(1);
+                Thread.sleep(1L);
             } catch (InterruptedException e) {
                 System.err.println("Error : " + getClass().getName() + " was interrupted!");
                 e.printStackTrace(); // Friendly message followed by stack trace
             }
 
         }
+
+        NewFeedBinGUI.exitLatch.countDown();
 
     }
 

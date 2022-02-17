@@ -6,9 +6,12 @@ import supervisor.ControllerSupervisor;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class NewFeedBinGUI extends JFrame {
 
@@ -19,6 +22,7 @@ public class NewFeedBinGUI extends JFrame {
 
     private ExecutorService controllerService;
     public static CountDownLatch controllerLatch;
+    public static CountDownLatch exitLatch;
     private JPanel panelMain;
     private JPanel panelMenu;
     private JButton buttonBinController;
@@ -29,6 +33,21 @@ public class NewFeedBinGUI extends JFrame {
 
         initGUIComponents();
         initNonGUIComponents();
+
+        buttonExit.addActionListener(e -> {
+
+            boolean shutdown = false;
+
+            try {
+                controllerLatch.countDown();
+                shutdown = exitLatch.await(5L, TimeUnit.SECONDS);
+            } catch (InterruptedException ignored) {}
+
+            if (! shutdown) System.err.println("Error : Could not stop threads gracefully!");
+
+            System.exit(shutdown ? 0 : -1); // Shutdown regardless of error, as JVM should be able to terminate process
+
+        });
 
     }
 
@@ -57,6 +76,8 @@ public class NewFeedBinGUI extends JFrame {
 
         this.controllerService = Executors.newFixedThreadPool(2); // 2 controllers, so 2 threads.
         controllerLatch = new CountDownLatch(1); // Used to tell threads to shut down.
+
+        exitLatch = new CountDownLatch(2); // The two threads will trigger this when the program exits.
 
         this.controllerService.submit(controller);
         this.controllerService.submit(supervisor);
