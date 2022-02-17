@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -49,6 +51,15 @@ public class NewFeedBinGUI extends JFrame {
 
         });
 
+        this.addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                buttonExit.doClick();
+            }
+
+        });
+
     }
 
     private void initGUIComponents() {
@@ -60,7 +71,7 @@ public class NewFeedBinGUI extends JFrame {
         this.setContentPane(panelMain);
         this.setTitle("Feed Bin Demo");
         this.setPreferredSize(new Dimension(400, 200));
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null); // Spawns GUI at the center of the screen
         this.pack();
         this.setVisible(true);
