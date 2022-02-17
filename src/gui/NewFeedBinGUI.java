@@ -55,7 +55,7 @@ public class NewFeedBinGUI extends JFrame {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                buttonExit.doClick();
+                buttonExit.doClick(); // Overriding the close button to try and force graceful shutdown
             }
 
         });
