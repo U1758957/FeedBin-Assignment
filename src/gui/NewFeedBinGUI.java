@@ -10,12 +10,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class NewFeedBinGUI extends JFrame {
+
+    private JPanel panelMain;
+    private JButton buttonBinController;
+    private JButton buttonSupervisor;
+    private JButton buttonExit;
+    private JPanel panelBinController;
+    private JPanel panelSupervisor;
 
     private ModelFeedBin[] bins;
 
@@ -25,12 +35,6 @@ public class NewFeedBinGUI extends JFrame {
     private ExecutorService controllerService;
     public static CountDownLatch controllerLatch;
     public static CountDownLatch exitLatch;
-    private JPanel panelMain;
-    private JButton buttonBinController;
-    private JButton buttonSupervisor;
-    private JButton buttonExit;
-    private JPanel panelBinController;
-    private JPanel panelSupervisor;
 
     public NewFeedBinGUI() {
 
