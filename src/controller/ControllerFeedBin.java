@@ -10,6 +10,9 @@ public class ControllerFeedBin implements Runnable {
     private volatile int operation;
     private volatile String value;
 
+    private volatile boolean orderFulfillment;
+    private volatile String[] inspectionResult;
+
     public ControllerFeedBin(ModelFeedBin[] bins) {
         this.bins = bins;
         this.binNumber = 0;
@@ -45,6 +48,14 @@ public class ControllerFeedBin implements Runnable {
         this.value = value;
     }
 
+    public boolean isOrderFulFilled() {
+        return orderFulfillment;
+    }
+
+    public String[] getInspectionResult() {
+        return inspectionResult;
+    }
+
     @Override
     public void run() {
 
@@ -56,10 +67,7 @@ public class ControllerFeedBin implements Runnable {
 
                     case 0:
 
-                        boolean isProductNameSet = setProductName(binNumber, value);
-
-                        if (! isProductNameSet); // TODO: 17/02/2022 Notify client that name cannot be changed
-
+                        this.orderFulfillment = setProductName(binNumber, value);
                         break;
 
                     case 1:
@@ -69,19 +77,13 @@ public class ControllerFeedBin implements Runnable {
 
                     case 2:
 
-                        boolean isProductAdded = addProduct(binNumber, Double.parseDouble(value));
                         // Double parse-ability is guaranteed by the front-end
-
-                        if (! isProductAdded); // TODO: 17/02/2022 Notify client that amount cannot be added
-
+                        this.orderFulfillment = addProduct(binNumber, Double.parseDouble(value));
                         break;
 
                     case 3:
 
-                        String[] binInformation = inspectBin(binNumber);
-
-                        // TODO: 17/02/2022 Show dialogue informing the client of the bin stats
-
+                        this.inspectionResult = inspectBin(binNumber);
                         break;
 
                 }

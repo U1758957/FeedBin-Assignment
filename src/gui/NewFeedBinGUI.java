@@ -97,6 +97,12 @@ public class NewFeedBinGUI extends JFrame {
                 this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 2, String.valueOf(volume));
                 guiLatch.await();
 
+                JOptionPane.showMessageDialog(
+                        this,
+                        controller.isOrderFulFilled() ? "Successfully added product!" : "Failed to add product!",
+                        "Notification",
+                        JOptionPane.INFORMATION_MESSAGE);
+
             } catch (NumberFormatException ex) {
 
                 JOptionPane.showMessageDialog(
