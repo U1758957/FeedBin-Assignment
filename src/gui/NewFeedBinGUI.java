@@ -7,6 +7,8 @@ import supervisor.ControllerSupervisor;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.concurrent.CountDownLatch;
@@ -29,6 +31,7 @@ public class NewFeedBinGUI extends JFrame {
     private JButton buttonFlushBin;
     private JButton buttonChangeProductName;
     private JComboBox<String> comboBoxChangeProductName;
+    private JButton buttonInspectBin;
 
     private ModelFeedBin[] bins;
 
@@ -121,6 +124,12 @@ public class NewFeedBinGUI extends JFrame {
 
         });
 
+        buttonInspectBin.addActionListener(e -> {
+
+            this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 4, null);
+
+        });
+
     }
 
     private void initGUIComponents() {
@@ -138,6 +147,8 @@ public class NewFeedBinGUI extends JFrame {
 
         this.buttonChangeProductName.setText("Change Product Name");
         for (String productName : ModelRecipe.getProductList()) comboBoxChangeProductName.addItem(productName);
+
+        this.buttonInspectBin.setText("Inspect Bin");
 
         this.setContentPane(panelMain);
         this.setTitle("Feed Bin Demo");
