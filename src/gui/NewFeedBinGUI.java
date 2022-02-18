@@ -27,6 +27,7 @@ public class NewFeedBinGUI extends JFrame {
     private JLabel labelComboBoxBinSelection;
     private JTextField textFieldAddProduct;
     private JButton buttonAddProduct;
+    private JButton buttonFlushBin;
 
     private ModelFeedBin[] bins;
 
@@ -99,6 +100,20 @@ public class NewFeedBinGUI extends JFrame {
 
         });
 
+        buttonFlushBin.addActionListener(e -> {
+
+            int option = JOptionPane.showConfirmDialog(
+                    this,
+                    "Are you sure you would like to flush " + comboBoxBinSelection.getSelectedItem() + "?",
+                    "Confirm",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+
+            if (option == JOptionPane.YES_OPTION)
+                this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 1, null);
+
+        });
+
     }
 
     private void initGUIComponents() {
@@ -111,6 +126,7 @@ public class NewFeedBinGUI extends JFrame {
         for (int i = 0; i < bins.length; i++) this.comboBoxBinSelection.addItem("Feed Bin #" + (i + 1));
 
         this.buttonAddProduct.setText("Add Product");
+        this.buttonFlushBin.setText("Flush Bin");
 
         this.setContentPane(panelMain);
         this.setTitle("Feed Bin Demo");
