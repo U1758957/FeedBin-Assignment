@@ -156,6 +156,12 @@ public class NewFeedBinGUI extends JFrame {
                 this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 0, (String) comboBoxChangeProductName.getSelectedItem());
                 guiLatch.await();
 
+                JOptionPane.showMessageDialog(
+                        this,
+                        controller.isOrderFulFilled() ? "Successfully changed product name!" : "Failed to change product name!",
+                        "Notification",
+                        JOptionPane.INFORMATION_MESSAGE);
+
             } catch (InterruptedException ex) {
 
                 System.err.println("Error : GUI interrupted whilst awaiting controller operation!");
