@@ -6,13 +6,8 @@ import supervisor.ControllerSupervisor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -26,6 +21,8 @@ public class NewFeedBinGUI extends JFrame {
     private JButton buttonExit;
     private JPanel panelBinController;
     private JPanel panelSupervisor;
+    private JComboBox<String> comboBoxBinSelection;
+    private JLabel labelComboBoxBinSelection;
 
     private ModelFeedBin[] bins;
 
@@ -38,8 +35,8 @@ public class NewFeedBinGUI extends JFrame {
 
     public NewFeedBinGUI() {
 
-        initGUIComponents();
         initNonGUIComponents();
+        initGUIComponents();
 
         buttonExit.addActionListener(e -> {
 
@@ -86,6 +83,9 @@ public class NewFeedBinGUI extends JFrame {
         this.buttonBinController.setText("Bin Controller");
         this.buttonSupervisor.setText("Supervisor");
         this.buttonExit.setText("Exit");
+
+        this.labelComboBoxBinSelection.setText("Bin Selection");
+        for (int i = 0; i < bins.length; i++) this.comboBoxBinSelection.addItem("Feed Bin #" + (i + 1));
 
         this.setContentPane(panelMain);
         this.setTitle("Feed Bin Demo");
