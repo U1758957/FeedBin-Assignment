@@ -198,7 +198,7 @@ public class NewFeedBinGUI extends JFrame {
 
         this.setContentPane(panelMain);
         this.setTitle("Feed Bin Demo");
-        this.setPreferredSize(new Dimension(400, 200));
+        this.setPreferredSize(new Dimension(448, 352));
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null); // Spawns GUI at the center of the screen
         this.panelSupervisor.setVisible(false);
