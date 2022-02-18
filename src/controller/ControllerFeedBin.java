@@ -82,15 +82,6 @@ public class ControllerFeedBin implements Runnable {
 
                     case 3:
 
-                        double removedProduct = removeProduct(binNumber, Double.parseDouble(value));
-                        // Double parse-ability is guaranteed by the front-end
-
-                        // TODO: 17/02/2022 Removed product amount is fed into a buffer for the other thread
-
-                        break;
-
-                    case 4:
-
                         String[] binInformation = inspectBin(binNumber);
 
                         // TODO: 17/02/2022 Show dialogue informing the client of the bin stats

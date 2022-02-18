@@ -126,7 +126,7 @@ public class NewFeedBinGUI extends JFrame {
 
         buttonInspectBin.addActionListener(e -> {
 
-            this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 4, null);
+            this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 3, null);
 
         });
 
