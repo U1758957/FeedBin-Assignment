@@ -93,9 +93,7 @@ public class NewFeedBinGUI extends JFrame {
                 double volume = Double.parseDouble(textFieldAddProduct.getText());
 
                 guiLatch = new CountDownLatch(1);
-
                 this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 2, String.valueOf(volume));
-
                 guiLatch.await();
 
             } catch (NumberFormatException ex) {
@@ -124,20 +122,56 @@ public class NewFeedBinGUI extends JFrame {
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
 
-            if (option == JOptionPane.YES_OPTION)
-                this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 1, null);
+            if (option == JOptionPane.YES_OPTION) {
+
+                try {
+
+                    guiLatch = new CountDownLatch(1);
+                    this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 1, null);
+                    guiLatch.await();
+
+                } catch (InterruptedException ex) {
+
+                    System.err.println("Error : GUI interrupted whilst awaiting controller operation!");
+                    System.exit(-1);
+
+                }
+
+            }
 
         });
 
         buttonChangeProductName.addActionListener(e -> {
 
-            this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 0, (String) comboBoxChangeProductName.getSelectedItem());
+            try {
+
+                guiLatch = new CountDownLatch(1);
+                this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 0, (String) comboBoxChangeProductName.getSelectedItem());
+                guiLatch.await();
+
+            } catch (InterruptedException ex) {
+
+                System.err.println("Error : GUI interrupted whilst awaiting controller operation!");
+                System.exit(-1);
+
+            }
 
         });
 
         buttonInspectBin.addActionListener(e -> {
 
-            this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 3, null);
+            try {
+
+                guiLatch = new CountDownLatch(1);
+                this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 3, null);
+                guiLatch.await();
+
+            } catch (InterruptedException ex) {
+
+                System.err.println("Error : GUI interrupted whilst awaiting controller operation!");
+                System.exit(-1);
+
+            }
 
         });
 
