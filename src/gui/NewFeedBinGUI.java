@@ -32,6 +32,7 @@ public class NewFeedBinGUI extends JFrame {
     private JButton buttonChangeProductName;
     private JComboBox<String> comboBoxChangeProductName;
     private JButton buttonInspectBin;
+    private JPanel panelBinControllerInspection;
 
     private ModelFeedBin[] bins;
 
