@@ -28,10 +28,6 @@ public class ControllerFeedBin implements Runnable {
         return this.bins[binNumber].addProduct(volume);
     }
 
-    private double removeProduct(int binNumber, double volume) {
-        return this.bins[binNumber].removeProduct(volume);
-    }
-
     private String[] inspectBin(int binNumber) {
 
         String binNo = String.valueOf(this.bins[binNumber].getBinNumber()); // Kind of moot, but doing it for sake of completeness
