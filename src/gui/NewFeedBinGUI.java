@@ -85,6 +85,7 @@ public class NewFeedBinGUI extends JFrame {
             try {
 
                 double volume = Double.parseDouble(textFieldAddProduct.getText());
+                this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 2, String.valueOf(volume));
 
             } catch (NumberFormatException ex) {
 

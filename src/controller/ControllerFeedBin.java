@@ -76,6 +76,8 @@ public class ControllerFeedBin implements Runnable {
                         boolean isProductAdded = addProduct(binNumber, Double.parseDouble(value));
                         // Double parse-ability is guaranteed by the front-end
 
+                        System.out.println(isProductAdded);
+
                         if (! isProductAdded); // TODO: 17/02/2022 Notify client that amount cannot be added
 
                         break;
