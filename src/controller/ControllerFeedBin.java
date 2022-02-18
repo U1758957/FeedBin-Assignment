@@ -62,9 +62,6 @@ public class ControllerFeedBin implements Runnable {
 
                         boolean isProductNameSet = setProductName(binNumber, value);
 
-                        System.out.println(value);
-                        System.out.println(isProductNameSet);
-
                         if (! isProductNameSet); // TODO: 17/02/2022 Notify client that name cannot be changed
 
                         break;
@@ -78,8 +75,6 @@ public class ControllerFeedBin implements Runnable {
 
                         boolean isProductAdded = addProduct(binNumber, Double.parseDouble(value));
                         // Double parse-ability is guaranteed by the front-end
-
-                        System.out.println(isProductAdded);
 
                         if (! isProductAdded); // TODO: 17/02/2022 Notify client that amount cannot be added
 
