@@ -7,8 +7,6 @@ import supervisor.ControllerSupervisor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.concurrent.CountDownLatch;
@@ -32,7 +30,7 @@ public class NewFeedBinGUI extends JFrame {
     private JButton buttonChangeProductName;
     private JComboBox<String> comboBoxChangeProductName;
     private JButton buttonInspectBin;
-    private JPanel panelBinControllerInspection;
+    private JTextArea textAreaInspectionResult;
 
     private ModelFeedBin[] bins;
 
@@ -178,6 +176,15 @@ public class NewFeedBinGUI extends JFrame {
                 guiLatch = new CountDownLatch(1);
                 this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 3, null);
                 guiLatch.await();
+
+                String[] binInspectionResult = controller.getInspectionResult();
+
+                textAreaInspectionResult.setText(""); // Clear the previous inspection
+
+                textAreaInspectionResult.append("Bin Number: " + binInspectionResult[0] + System.lineSeparator());
+                textAreaInspectionResult.append("Product Name: " + binInspectionResult[1] + System.lineSeparator());
+                textAreaInspectionResult.append("Max Volume: " + binInspectionResult[2] + System.lineSeparator());
+                textAreaInspectionResult.append("Current Volume: " + binInspectionResult[3]);
 
             } catch (InterruptedException ex) {
 
