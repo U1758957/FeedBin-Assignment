@@ -23,6 +23,8 @@ public class NewFeedBinGUI extends JFrame {
     private JPanel panelSupervisor;
     private JComboBox<String> comboBoxBinSelection;
     private JLabel labelComboBoxBinSelection;
+    private JTextField textFieldAddProduct;
+    private JButton buttonAddProduct;
 
     private ModelFeedBin[] bins;
 
@@ -86,6 +88,8 @@ public class NewFeedBinGUI extends JFrame {
 
         this.labelComboBoxBinSelection.setText("Bin Selection");
         for (int i = 0; i < bins.length; i++) this.comboBoxBinSelection.addItem("Feed Bin #" + (i + 1));
+
+        this.buttonAddProduct.setText("Add Product");
 
         this.setContentPane(panelMain);
         this.setTitle("Feed Bin Demo");
