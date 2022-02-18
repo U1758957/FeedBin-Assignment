@@ -39,8 +39,9 @@ public class NewFeedBinGUI extends JFrame {
     private ControllerSupervisor supervisor;
 
     private ExecutorService controllerService;
-    public static CountDownLatch controllerLatch;
-    public static CountDownLatch exitLatch;
+    public static CountDownLatch controllerLatch; // Used to tell the controllers to shut down
+    public static CountDownLatch exitLatch; // Used to tell the GUI that the controllers have shut down
+    public static CountDownLatch guiLatch; // Used to make sure operations succeed before accessing a controller again
 
     public NewFeedBinGUI() {
 
@@ -90,7 +91,12 @@ public class NewFeedBinGUI extends JFrame {
             try {
 
                 double volume = Double.parseDouble(textFieldAddProduct.getText());
+
+                guiLatch = new CountDownLatch(1);
+
                 this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 2, String.valueOf(volume));
+
+                guiLatch.await();
 
             } catch (NumberFormatException ex) {
 
@@ -99,6 +105,11 @@ public class NewFeedBinGUI extends JFrame {
                         "Adding product input must be a number!",
                         "Warning",
                         JOptionPane.WARNING_MESSAGE);
+
+            } catch (InterruptedException ex) {
+
+                System.err.println("Error : GUI interrupted whilst awaiting controller operation!");
+                System.exit(-1);
 
             }
 

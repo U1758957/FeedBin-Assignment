@@ -91,6 +91,7 @@ public class ControllerFeedBin implements Runnable {
                 }
 
                 this.operation = -1;
+                NewFeedBinGUI.guiLatch.countDown();
 
             }
 
