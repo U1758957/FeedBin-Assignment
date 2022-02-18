@@ -2,12 +2,11 @@ package gui;
 
 import controller.ControllerFeedBin;
 import controller.ModelFeedBin;
+import recipe.ModelRecipe;
 import supervisor.ControllerSupervisor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.concurrent.CountDownLatch;
@@ -28,6 +27,8 @@ public class NewFeedBinGUI extends JFrame {
     private JTextField textFieldAddProduct;
     private JButton buttonAddProduct;
     private JButton buttonFlushBin;
+    private JButton buttonChangeProductName;
+    private JComboBox<String> comboBoxChangeProductName;
 
     private ModelFeedBin[] bins;
 
@@ -114,6 +115,12 @@ public class NewFeedBinGUI extends JFrame {
 
         });
 
+        buttonChangeProductName.addActionListener(e -> {
+
+            this.controller.issueOrder(comboBoxBinSelection.getSelectedIndex(), 0, (String) comboBoxChangeProductName.getSelectedItem());
+
+        });
+
     }
 
     private void initGUIComponents() {
@@ -126,7 +133,11 @@ public class NewFeedBinGUI extends JFrame {
         for (int i = 0; i < bins.length; i++) this.comboBoxBinSelection.addItem("Feed Bin #" + (i + 1));
 
         this.buttonAddProduct.setText("Add Product");
+
         this.buttonFlushBin.setText("Flush Bin");
+
+        this.buttonChangeProductName.setText("Change Product Name");
+        for (String productName : ModelRecipe.getProductList()) comboBoxChangeProductName.addItem(productName);
 
         this.setContentPane(panelMain);
         this.setTitle("Feed Bin Demo");
