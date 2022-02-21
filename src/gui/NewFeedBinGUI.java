@@ -214,6 +214,31 @@ public class NewFeedBinGUI extends JFrame {
 
         buttonAddBatch.addActionListener(e -> {
 
+            try {
+
+                double amount = Double.parseDouble(textFieldBatchAmount.getText());
+
+                guiLatch = new CountDownLatch(1);
+                this.supervisor.issueOrder((String) comboBoxRecipeList.getSelectedItem(), "", amount, 0);
+                guiLatch.await();
+
+                // TODO: 21/02/2022 Is order fulfilled?
+
+            } catch (NumberFormatException ex) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Batch amount must be a number!",
+                        "Warning",
+                        JOptionPane.WARNING_MESSAGE);
+
+            } catch (InterruptedException ex) {
+
+                System.err.println("Error : GUI interrupted whilst awaiting supervisor operation!");
+                System.exit(-1);
+
+            }
+
         });
 
         buttonProcessNextBatch.addActionListener(e -> {

@@ -12,7 +12,7 @@ public class ControllerSupervisor implements Runnable {
 
     private volatile String recipe;
     private volatile String batch;
-    private volatile int amount;
+    private volatile double amount;
     private volatile int operation;
 
     private volatile boolean orderFulfillment;
@@ -23,11 +23,11 @@ public class ControllerSupervisor implements Runnable {
         this.supervisor = new ModelSupervisor(bins);
         this.recipe = "";
         this.batch = "";
-        this.amount = 0;
+        this.amount = 0.0d;
         this.operation = -1;
     }
 
-    private boolean addBatch(String recipe, int amount) {
+    private boolean addBatch(String recipe, double amount) {
         return this.supervisor.addBatch(recipe, amount);
     }
 
@@ -48,7 +48,7 @@ public class ControllerSupervisor implements Runnable {
     2 : Inspecting all the bins
 
      */
-    public void issueOrder(String recipe, String batch, int amount, int operation) {
+    public void issueOrder(String recipe, String batch, double amount, int operation) {
         this.recipe = recipe;
         this.batch = batch;
         this.amount = amount;
