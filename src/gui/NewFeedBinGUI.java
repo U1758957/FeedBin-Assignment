@@ -35,6 +35,8 @@ public class NewFeedBinGUI extends JFrame {
     private JTextField textFieldBatchAmount;
     private JButton buttonAddBatch;
     private JButton buttonInspectAllBins;
+    private JTextArea textAreaBatchList;
+    private JButton buttonProcessNextBatch;
 
     private ModelFeedBin[] bins;
 
@@ -229,6 +231,8 @@ public class NewFeedBinGUI extends JFrame {
         this.buttonAddBatch.setText("Add Batch");
 
         this.buttonInspectAllBins.setText("Inspect All Bins");
+
+        this.buttonProcessNextBatch.setText("Process Next Batch");
 
         // Supervisor Controller Interface Init
 
