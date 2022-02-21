@@ -33,10 +33,10 @@ public class ControllerFeedBin implements Runnable {
 
     private String[] inspectBin(int binNumber) {
 
-        String binNo = String.valueOf(this.bins[binNumber].getBinNumber()); // Kind of moot, but doing it for sake of completeness
-        String productName = this.bins[binNumber].getProductName();
-        String maxVolume = String.valueOf(this.bins[binNumber].getMaxVolume());
-        String currentVolume = String.valueOf(this.bins[binNumber].getCurrentVolume());
+        String binNo = String.valueOf(bins[binNumber].getBinNumber()); // Kind of moot, but doing it for sake of completeness
+        String productName = bins[binNumber].getProductName();
+        String maxVolume = String.valueOf(bins[binNumber].getMaxVolume());
+        String currentVolume = String.valueOf(bins[binNumber].getCurrentVolume());
 
         return new String[] {binNo, productName, maxVolume, currentVolume};
 
