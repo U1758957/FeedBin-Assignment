@@ -7,6 +7,8 @@ import supervisor.ControllerSupervisor;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.concurrent.CountDownLatch;
@@ -199,6 +201,18 @@ public class NewFeedBinGUI extends JFrame {
                 System.exit(-1);
 
             }
+
+        });
+
+        buttonAddBatch.addActionListener(e -> {
+
+        });
+
+        buttonProcessNextBatch.addActionListener(e -> {
+
+        });
+
+        buttonInspectAllBins.addActionListener(e -> {
 
         });
 
