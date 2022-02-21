@@ -3,6 +3,8 @@ package supervisor;
 import controller.ModelFeedBin;
 import gui.NewFeedBinGUI;
 
+import java.util.List;
+
 public class ControllerSupervisor implements Runnable {
 
     private final ModelFeedBin[] bins;
@@ -10,6 +12,9 @@ public class ControllerSupervisor implements Runnable {
     private volatile String recipe;
     private volatile String batch;
     private volatile int operation;
+
+    private volatile boolean orderFulFillment;
+    private volatile List<String[]> inspectionResults;
 
     public ControllerSupervisor(ModelFeedBin[] bins) {
         this.bins = bins;
@@ -30,6 +35,14 @@ public class ControllerSupervisor implements Runnable {
         this.recipe = recipe;
         this.batch = batch;
         this.operation = operation;
+    }
+
+    public boolean isOrderFulfilled() {
+        return orderFulFillment;
+    }
+
+    public List<String[]> getInspectionResults() {
+        return inspectionResults;
     }
 
     @Override
