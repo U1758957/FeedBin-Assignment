@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -213,6 +214,34 @@ public class NewFeedBinGUI extends JFrame {
         });
 
         buttonInspectAllBins.addActionListener(e -> {
+
+            try {
+
+                guiLatch = new CountDownLatch(1);
+                this.supervisor.issueOrder("", "", 0, 2);
+                guiLatch.await();
+
+                List<String[]> binInspectionResults = supervisor.getInspectionResults();
+
+                textAreaAllBinsInspection.setText(""); // Clear the previous inspections
+
+                for (String[] currentBinInspection : binInspectionResults) {
+
+                    textAreaAllBinsInspection.append("Bin Number: " + currentBinInspection[0] + System.lineSeparator());
+                    textAreaAllBinsInspection.append("Product Name: " + currentBinInspection[1] + System.lineSeparator());
+                    textAreaAllBinsInspection.append("Max Volume: " + currentBinInspection[2] + System.lineSeparator());
+                    textAreaAllBinsInspection.append("Current Volume: " + currentBinInspection[3] + System.lineSeparator());
+
+                   textAreaAllBinsInspection.append(System.lineSeparator());
+
+                }
+
+            } catch (InterruptedException ex) {
+
+                System.err.println("Error : GUI interrupted whilst awaiting supervisor operation!");
+                System.exit(-1);
+
+            }
 
         });
 
