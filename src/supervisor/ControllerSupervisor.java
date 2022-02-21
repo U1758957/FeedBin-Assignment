@@ -7,10 +7,11 @@ public class ControllerSupervisor implements Runnable {
 
     private final ModelFeedBin[] bins;
 
+    private volatile String recipe;
     private volatile String batch;
     private volatile int operation;
 
-    public ControllerSupervisor(ModelFeedBin[]bins) {
+    public ControllerSupervisor(ModelFeedBin[] bins) {
         this.bins = bins;
         this.batch = "";
         this.operation = -1;
@@ -20,12 +21,13 @@ public class ControllerSupervisor implements Runnable {
 
     Operation IDs and their roles for the ControllerSupervisor:
 
-    0 : Adding a batch
+    0 : Adding a batch (from a recipe)
     1 : Processing the next batch
     2 : Inspecting all the bins
 
      */
-    public void issueOrder(String batch, int operation) {
+    public void issueOrder(String recipe, String batch, int operation) {
+        this.recipe = recipe;
         this.batch = batch;
         this.operation = operation;
     }
