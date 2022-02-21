@@ -7,8 +7,6 @@ import supervisor.ControllerSupervisor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
@@ -52,6 +50,13 @@ public class NewFeedBinGUI extends JFrame {
     public static CountDownLatch exitLatch; // Used to tell the GUI that the controllers have shut down
     public static CountDownLatch guiLatch; // Used to make sure operations succeed before accessing a controller again
 
+    private final Dimension[] guiDimensions = new Dimension[] {
+
+            new Dimension(448, 352), // Bin Controller / Default
+            new Dimension(640, 480) // Supervisor Controller
+
+    }; // The GUI changes size between the Bin Controller and Supervisor Controller interfaces, so store the sizes here
+
     public NewFeedBinGUI() {
 
         initNonGUIComponents();
@@ -84,6 +89,7 @@ public class NewFeedBinGUI extends JFrame {
         buttonBinController.addActionListener(e -> {
 
             this.panelSupervisor.setVisible(false);
+            this.setSize(guiDimensions[0]);
             this.panelBinController.setVisible(true);
 
         });
@@ -91,6 +97,7 @@ public class NewFeedBinGUI extends JFrame {
         buttonSupervisor.addActionListener(e -> {
 
             this.panelBinController.setVisible(false);
+            this.setSize(guiDimensions[1]);
             this.panelSupervisor.setVisible(true);
 
         });
@@ -282,7 +289,7 @@ public class NewFeedBinGUI extends JFrame {
 
         this.setContentPane(panelMain);
         this.setTitle("Feed Bin Demo");
-        this.setPreferredSize(new Dimension(448, 352));
+        this.setPreferredSize(guiDimensions[0]);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null); // Spawns GUI at the center of the screen
         this.panelSupervisor.setVisible(false);
