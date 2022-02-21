@@ -42,6 +42,16 @@ public class ControllerFeedBin implements Runnable {
 
     }
 
+    /*
+
+    Operation IDs and their roles for the ControllerFeedBin:
+
+    0 : Set the product name
+    1 : Flush the bin
+    2 : Add product to the bin
+    3 : Inspect the bin
+
+     */
     public void issueOrder(int binNumber, int operation, String value) {
         this.binNumber = binNumber;
         this.operation = operation;
