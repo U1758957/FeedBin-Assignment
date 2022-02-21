@@ -31,6 +31,9 @@ public class NewFeedBinGUI extends JFrame {
     private JComboBox<String> comboBoxChangeProductName;
     private JButton buttonInspectBin;
     private JTextArea textAreaInspectionResult;
+    private JComboBox<String> comboBoxRecipeList;
+    private JTextField textFieldBatchAmount;
+    private JButton buttonAddBatch;
 
     private ModelFeedBin[] bins;
 
@@ -203,6 +206,8 @@ public class NewFeedBinGUI extends JFrame {
         this.buttonSupervisor.setText("Supervisor");
         this.buttonExit.setText("Exit");
 
+        // Bin Controller Interface Init
+
         this.labelComboBoxBinSelection.setText("Bin Selection");
         for (int i = 0; i < bins.length; i++) this.comboBoxBinSelection.addItem("Feed Bin #" + (i + 1));
 
@@ -214,6 +219,15 @@ public class NewFeedBinGUI extends JFrame {
         for (String productName : ModelRecipe.getProductList()) comboBoxChangeProductName.addItem(productName);
 
         this.buttonInspectBin.setText("Inspect Bin");
+
+        // Bin Controller Interface Init
+
+        // Supervisor Controller Interface Init
+
+        for (String recipeName : ModelRecipe.getRecipeList()) comboBoxRecipeList.addItem(recipeName);
+        this.buttonAddBatch.setText("Add Batch");
+
+        // Supervisor Controller Interface Init
 
         this.setContentPane(panelMain);
         this.setTitle("Feed Bin Demo");
