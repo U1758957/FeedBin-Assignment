@@ -34,6 +34,7 @@ public class NewFeedBinGUI extends JFrame {
     private JComboBox<String> comboBoxRecipeList;
     private JTextField textFieldBatchAmount;
     private JButton buttonAddBatch;
+    private JButton buttonInspectAllBins;
 
     private ModelFeedBin[] bins;
 
@@ -226,6 +227,8 @@ public class NewFeedBinGUI extends JFrame {
 
         for (String recipeName : ModelRecipe.getRecipeList()) comboBoxRecipeList.addItem(recipeName);
         this.buttonAddBatch.setText("Add Batch");
+
+        this.buttonInspectAllBins.setText("Inspect All Bins");
 
         // Supervisor Controller Interface Init
 
