@@ -12,19 +12,19 @@ public class ModelSupervisor {
         this.bins = bins;
     }
 
-    private boolean addBatch(String recipe, int amount) {
+    public boolean addBatch(String recipe, int amount) {
 
         return false;
 
     }
 
-    private boolean processBatch(String batch) {
+    public boolean processBatch(String batch) {
 
         return false;
 
     }
 
-    private List<String[]> inspectAllBins() {
+    public List<String[]> inspectAllBins() {
 
         return null;
 
