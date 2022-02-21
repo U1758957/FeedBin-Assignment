@@ -37,6 +37,7 @@ public class NewFeedBinGUI extends JFrame {
     private JButton buttonInspectAllBins;
     private JTextArea textAreaBatchList;
     private JButton buttonProcessNextBatch;
+    private JTextArea textAreaAllBinsInspection;
 
     private ModelFeedBin[] bins;
 
