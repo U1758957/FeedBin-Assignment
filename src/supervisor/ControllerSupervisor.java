@@ -15,6 +15,8 @@ public class ControllerSupervisor implements Runnable {
     private volatile double amount;
     private volatile int operation;
 
+    private volatile String currentBatchOrder;
+
     private volatile boolean orderFulfillment;
     private volatile List<String[]> inspectionResults;
 
@@ -27,8 +29,8 @@ public class ControllerSupervisor implements Runnable {
         this.operation = -1;
     }
 
-    private boolean addBatch(String recipe, double amount) {
-        return this.supervisor.addBatch(recipe, amount);
+    private void addBatch(String recipe, double amount) {
+         this.supervisor.addBatch(recipe, amount);
     }
 
     private boolean processBatch(String batch) {
@@ -39,15 +41,19 @@ public class ControllerSupervisor implements Runnable {
         return supervisor.inspectAllBins();
     }
 
+    public String getCurrentBatchOrder() {
+        return currentBatchOrder;
+    }
+
     /*
 
-    Operation IDs and their roles for the ControllerSupervisor:
+        Operation IDs and their roles for the ControllerSupervisor:
 
-    0 : Adding a batch (from a recipe)
-    1 : Processing the next batch
-    2 : Inspecting all the bins
+        0 : Adding a batch (from a recipe)
+        1 : Processing the next batch
+        2 : Inspecting all the bins
 
-     */
+         */
     public void issueOrder(String recipe, String batch, double amount, int operation) {
         this.recipe = recipe;
         this.batch = batch;
@@ -74,7 +80,8 @@ public class ControllerSupervisor implements Runnable {
 
                     case 0:
 
-                        this.orderFulfillment = addBatch(recipe, amount);
+                        addBatch(recipe, amount);
+                        this.currentBatchOrder = supervisor.getCurrentBatchOrder();
                         break;
 
                     case 1:

@@ -11,11 +11,18 @@ public class ModelSupervisor {
 
     private final ModelFeedBin[] bins;
 
+    private volatile String currentBatchOrder;
+
     public ModelSupervisor(ModelFeedBin[] bins) {
         this.bins = bins;
+        this.currentBatchOrder = "";
     }
 
-    public boolean addBatch(String recipe, double amount) {
+    public String getCurrentBatchOrder() {
+        return currentBatchOrder;
+    }
+
+    public void addBatch(String recipe, double amount) {
 
         String[] recipeIngredients = ModelRecipe.getRecipeIngredients(recipe);
 
@@ -28,11 +35,13 @@ public class ModelSupervisor {
         double ingredientOneAmount = amount * ingredientOnePercentage;
         double ingredientTwoAmount = amount * ingredientTwoPercentage;
 
-        System.out.println("Amount: " + amount);
-        System.out.println(ingredientOneName + " -> " + ingredientOneAmount);
-        System.out.println(ingredientTwoName + " -> " + ingredientTwoAmount);
+        this.currentBatchOrder = // E.g., WeetyMeal (20.0) -> Weety Bits-8.0_Bitty Weets-9.0
 
-        return false;
+                recipe + " " + "(" + amount + ")" + " -> "
+                +
+                ingredientOneName + "-" + ingredientOneAmount
+                + "_" +
+                ingredientTwoName + "-" + ingredientTwoAmount;
 
     }
 

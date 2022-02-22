@@ -222,7 +222,7 @@ public class NewFeedBinGUI extends JFrame {
                 this.supervisor.issueOrder((String) comboBoxRecipeList.getSelectedItem(), "", amount, 0);
                 guiLatch.await();
 
-                // TODO: 21/02/2022 Is order fulfilled?
+                this.textAreaBatchList.append(supervisor.getCurrentBatchOrder() + System.lineSeparator());
 
             } catch (NumberFormatException ex) {
 
