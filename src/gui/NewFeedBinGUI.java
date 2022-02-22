@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -242,6 +243,18 @@ public class NewFeedBinGUI extends JFrame {
         });
 
         buttonProcessNextBatch.addActionListener(e -> {
+
+            String[] batchList = textAreaBatchList.getText().split(System.lineSeparator());
+            String currentBatch = batchList[batchList.length - 1]; // Take the current batch from the bottom of the "stack"
+
+            // A jTextArea is technically just a String, with the convenience of it looking like a list with new-lines.
+            // This does mean that to treat it as a list, you need to do String splitting and rebuilding, but the
+            // performance cost is negligible and not critical, so the convenience for the user is preferred.
+
+            this.textAreaBatchList.setText("");
+
+            for (int i = 0; i < batchList.length - 1; i++) // Rebuild the text area without the last element
+                this.textAreaBatchList.append(batchList[i] + System.lineSeparator());
 
         });
 
