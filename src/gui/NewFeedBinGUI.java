@@ -103,6 +103,8 @@ public class NewFeedBinGUI extends JFrame {
 
         });
 
+        // ControllerFeedBin GUI elements
+
         buttonAddProduct.addActionListener(e -> {
 
             try {
@@ -213,6 +215,10 @@ public class NewFeedBinGUI extends JFrame {
 
         });
 
+        // ControllerFeedBin GUI elements
+
+        // SupervisorController GUI elements
+
         buttonAddBatch.addActionListener(e -> {
 
             try {
@@ -305,6 +311,8 @@ public class NewFeedBinGUI extends JFrame {
             }
 
         });
+
+        // SupervisorController GUI elements
 
     }
 
