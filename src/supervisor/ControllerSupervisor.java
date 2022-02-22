@@ -18,6 +18,7 @@ public class ControllerSupervisor implements Runnable {
     private volatile String currentBatchOrder;
 
     private volatile boolean orderFulfillment;
+    private volatile String batchFailureReason;
     private volatile List<String[]> inspectionResults;
 
     public ControllerSupervisor(ModelFeedBin[] bins) {
@@ -65,6 +66,10 @@ public class ControllerSupervisor implements Runnable {
         return orderFulfillment;
     }
 
+    public String getBatchFailureReason() {
+        return batchFailureReason;
+    }
+
     public List<String[]> getInspectionResults() {
         return inspectionResults;
     }
@@ -87,6 +92,7 @@ public class ControllerSupervisor implements Runnable {
                     case 1:
 
                         this.orderFulfillment = processBatch(batch);
+                        if (! orderFulfillment) this.batchFailureReason = supervisor.getBatchFailureReason();
                         break;
 
                     case 2:

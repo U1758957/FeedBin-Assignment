@@ -279,7 +279,12 @@ public class NewFeedBinGUI extends JFrame {
                 this.supervisor.issueOrder("", currentBatch, 0, 1);
                 guiLatch.await();
 
-                // TODO: 22/02/2022 React to boolean result
+                JOptionPane.showMessageDialog(
+                        this,
+                        supervisor.isOrderFulfilled() ? "Batch made up successfully!" : supervisor.getBatchFailureReason(),
+                        "Notification",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
 
             } catch (InterruptedException ex) {
 
