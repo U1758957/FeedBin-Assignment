@@ -66,6 +66,8 @@ public class ModelFeedBin {
      */
     public boolean addProduct(double volume) {
 
+        if (volume <= 0) return false;
+
         if (maxVolume >= (currentVolume + volume)) {
             this.currentVolume += volume;
             return true;
