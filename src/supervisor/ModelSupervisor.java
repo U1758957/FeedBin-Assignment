@@ -22,7 +22,9 @@ public class ModelSupervisor {
         return currentBatchOrder;
     }
 
-    public void addBatch(String recipe, double amount) {
+    public boolean addBatch(String recipe, double amount) {
+
+        if (amount <= 0) return false;
 
         String[] recipeIngredients = ModelRecipe.getRecipeIngredients(recipe);
 
@@ -42,6 +44,8 @@ public class ModelSupervisor {
                 ingredientOneName + "-" + ingredientOneAmount
                 + "_" +
                 ingredientTwoName + "-" + ingredientTwoAmount;
+
+        return true;
 
     }
 

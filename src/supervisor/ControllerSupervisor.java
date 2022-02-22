@@ -29,8 +29,8 @@ public class ControllerSupervisor implements Runnable {
         this.operation = -1;
     }
 
-    private void addBatch(String recipe, double amount) {
-         this.supervisor.addBatch(recipe, amount);
+    private boolean addBatch(String recipe, double amount) {
+         return this.supervisor.addBatch(recipe, amount);
     }
 
     private boolean processBatch(String batch) {
@@ -80,7 +80,7 @@ public class ControllerSupervisor implements Runnable {
 
                     case 0:
 
-                        addBatch(recipe, amount);
+                        this.orderFulfillment = addBatch(recipe, amount);
                         this.currentBatchOrder = supervisor.getCurrentBatchOrder();
                         break;
 
