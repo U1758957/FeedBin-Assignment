@@ -256,6 +256,22 @@ public class NewFeedBinGUI extends JFrame {
             for (int i = 0; i < batchList.length - 1; i++) // Rebuild the text area without the last element
                 this.textAreaBatchList.append(batchList[i] + System.lineSeparator());
 
+
+            try {
+
+                guiLatch = new CountDownLatch(1);
+                this.supervisor.issueOrder("", currentBatch, 0, 1);
+                guiLatch.await();
+
+                // TODO: 22/02/2022 React to boolean result
+
+            } catch (InterruptedException ex) {
+
+                System.err.println("Error : GUI interrupted whilst awaiting supervisor operation!");
+                System.exit(-1);
+
+            }
+
         });
 
         buttonInspectAllBins.addActionListener(e -> {
