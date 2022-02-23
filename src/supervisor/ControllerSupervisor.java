@@ -7,7 +7,6 @@ import java.util.List;
 
 public class ControllerSupervisor implements Runnable {
 
-    private final ModelFeedBin[] bins;
     private final ModelSupervisor supervisor;
 
     private volatile String recipe;
@@ -22,7 +21,6 @@ public class ControllerSupervisor implements Runnable {
     private volatile List<String[]> inspectionResults;
 
     public ControllerSupervisor(ModelFeedBin[] bins) {
-        this.bins = bins;
         this.supervisor = new ModelSupervisor(bins);
         this.recipe = "";
         this.batch = "";
