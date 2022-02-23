@@ -120,8 +120,8 @@ public class ModelSupervisor {
                         + currentIngredient
                         + System.lineSeparator()
                         + "Need: "
-                        + ingredientAmountMap.get(currentIngredient) + "cm^3" + " | "
-                        + "Bins Contain: " + binVolumeSum + "cm^3";
+                        + ingredientAmountMap.get(currentIngredient) + "m^3" + " | "
+                        + "Bins Contain: " + binVolumeSum + "m^3";
 
                 return false;
 
