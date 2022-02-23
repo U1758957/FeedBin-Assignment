@@ -101,11 +101,46 @@ public class ModelSupervisor {
 
         // Check if a batch can be made up (and make up the batch by default)
 
+        Map<String, Double> ingredientAmountMap = new HashMap<>();
 
+        ingredientAmountMap.put(ingredientOneName, ingredientOneAmount);
+        ingredientAmountMap.put(ingredientTwoName, ingredientTwoAmount);
+
+        for (String currentIngredient : ingredientBinIndexMap.keySet()) {
+
+            double remainingAmount = ingredientAmountMap.get(currentIngredient);
+
+            for (int binIndex : ingredientBinIndexMap.get(currentIngredient)) {
+
+                double removedAmount = bins[binIndex].removeProduct(remainingAmount);
+
+                if (removedAmount != remainingAmount) {
+                    // E.g., if a recipe wants 10.0 of x but a bin only has 8.0 of x, then you will need to take 2.0
+                    // of x from another bin, so update the variables to reflect the difference.
+                    remainingAmount -= removedAmount;
+                    ingredientAmountMap.replace(currentIngredient, remainingAmount);
+                } else {
+                    // If any bin can satisfy the remaining (or technically full) amount, e.g., you want 10.0 of x, and
+                    // you received 10.0 of x, then removedAmount will be equal to remainingAmount, so you have thus
+                    // satisfied the production and can break the loop.
+                    ingredientAmountMap.replace(currentIngredient, 0.0d);
+                    break;
+                }
+
+            }
+
+            if (ingredientAmountMap.get(currentIngredient) != 0.0d) {
+                // If there is still some ingredient to remove after querying all the bins, then there were not enough
+                // ingredients to satisfy the current batch.
+                this.batchFailureReason = "Error : no bins can satisfy ingredient amount for ingredient " + currentIngredient;
+                return false;
+            }
+
+        }
 
         // Check if a batch can be made up (and make up the batch by default)
 
-        return true;
+        return true; // If you get all the way to here, then the batch was made up successfully, so return true.
 
     }
 
