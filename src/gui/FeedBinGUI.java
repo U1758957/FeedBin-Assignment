@@ -9,14 +9,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class NewFeedBinGUI extends JFrame {
+public class FeedBinGUI extends JFrame {
 
     private JPanel panelMain;
     private JButton buttonBinController;
@@ -58,7 +57,7 @@ public class NewFeedBinGUI extends JFrame {
 
     }; // The GUI changes size between the Bin Controller and Supervisor Controller interfaces, so store the sizes here
 
-    public NewFeedBinGUI() {
+    public FeedBinGUI() {
 
         initNonGUIComponents();
         initGUIComponents();
@@ -409,7 +408,7 @@ public class NewFeedBinGUI extends JFrame {
             System.err.println("Warning: No system look-and-feel found, using default Swing look-and-feel");
         }
 
-        SwingUtilities.invokeLater(NewFeedBinGUI::new);
+        SwingUtilities.invokeLater(FeedBinGUI::new);
 
     }
 

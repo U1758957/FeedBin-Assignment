@@ -1,6 +1,6 @@
 package controller;
 
-import gui.NewFeedBinGUI;
+import gui.FeedBinGUI;
 
 public class ControllerFeedBin implements Runnable {
 
@@ -69,7 +69,7 @@ public class ControllerFeedBin implements Runnable {
     @Override
     public void run() {
 
-        while (NewFeedBinGUI.controllerLatch.getCount() > 0) {
+        while (FeedBinGUI.controllerLatch.getCount() > 0) {
 
             if (operation > -1) {
 
@@ -99,7 +99,7 @@ public class ControllerFeedBin implements Runnable {
                 }
 
                 this.operation = -1;
-                NewFeedBinGUI.guiLatch.countDown();
+                FeedBinGUI.guiLatch.countDown();
 
             }
 
@@ -112,7 +112,7 @@ public class ControllerFeedBin implements Runnable {
 
         }
 
-        NewFeedBinGUI.exitLatch.countDown();
+        FeedBinGUI.exitLatch.countDown();
 
     }
 

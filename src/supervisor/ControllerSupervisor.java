@@ -1,7 +1,7 @@
 package supervisor;
 
 import controller.ModelFeedBin;
-import gui.NewFeedBinGUI;
+import gui.FeedBinGUI;
 
 import java.util.List;
 
@@ -77,7 +77,7 @@ public class ControllerSupervisor implements Runnable {
     @Override
     public void run() {
 
-        while (NewFeedBinGUI.controllerLatch.getCount() > 0) {
+        while (FeedBinGUI.controllerLatch.getCount() > 0) {
 
             if (operation > -1) {
 
@@ -103,7 +103,7 @@ public class ControllerSupervisor implements Runnable {
                 }
 
                 this.operation = -1;
-                NewFeedBinGUI.guiLatch.countDown();
+                FeedBinGUI.guiLatch.countDown();
 
             }
 
@@ -116,7 +116,7 @@ public class ControllerSupervisor implements Runnable {
 
         }
 
-        NewFeedBinGUI.exitLatch.countDown();
+        FeedBinGUI.exitLatch.countDown();
 
     }
 
