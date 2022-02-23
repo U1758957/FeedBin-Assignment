@@ -313,7 +313,7 @@ public class FeedBinGUI extends JFrame {
                     textAreaAllBinsInspection.append("Max Volume: " + currentBinInspection[2] + System.lineSeparator());
                     textAreaAllBinsInspection.append("Current Volume: " + currentBinInspection[3] + System.lineSeparator());
 
-                   textAreaAllBinsInspection.append(System.lineSeparator());
+                    textAreaAllBinsInspection.append(System.lineSeparator());
 
                 }
 
