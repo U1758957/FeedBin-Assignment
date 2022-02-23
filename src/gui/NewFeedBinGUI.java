@@ -384,6 +384,8 @@ public class NewFeedBinGUI extends JFrame {
         this.bins[1] = new ModelFeedBin(1, "Crushed Flakes");
         this.bins[2] = new ModelFeedBin(2, "Crushed Flakes");
 
+        for (ModelFeedBin bin : bins) bin.addProduct(bin.getMaxVolume()); // Fill up the bins for the demo
+
         this.controller = new ControllerFeedBin(bins);
         this.supervisor = new ControllerSupervisor(bins);
 
