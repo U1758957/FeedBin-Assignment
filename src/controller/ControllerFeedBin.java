@@ -2,6 +2,16 @@ package controller;
 
 import gui.FeedBinGUI;
 
+/**
+ *
+ * ControllerFeedBin.java
+ * Zac King (U1758957)
+ *
+ * Last updated February 2022
+ *
+ * One of the two running threads, handles GUI actions from the [Bin] Controller client interface
+ *
+ */
 public class ControllerFeedBin implements Runnable {
 
     private final ModelFeedBin[] bins;

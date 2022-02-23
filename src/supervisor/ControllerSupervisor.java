@@ -5,6 +5,16 @@ import gui.FeedBinGUI;
 
 import java.util.List;
 
+/**
+ *
+ * ControllerSupervisor.java
+ * Zac King (U1758957)
+ *
+ * Last updated February 2022
+ *
+ * One of the two running threads, handles all GUI actions from the Supervisor client interface
+ *
+ */
 public class ControllerSupervisor implements Runnable {
 
     private final ModelSupervisor supervisor;

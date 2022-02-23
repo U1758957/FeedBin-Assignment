@@ -2,6 +2,17 @@ package recipe;
 
 import java.util.*;
 
+/**
+ *
+ * ModelRecipe.java
+ * Zac King (U1758957)
+ *
+ * Last updated February 2022
+ *
+ * A class that models the ingredients and recipes for the demo including how they would be formatted internally if they
+ * were parsed from a database.
+ *
+ */
 public class ModelRecipe {
 
     private static final String[] productsArr;

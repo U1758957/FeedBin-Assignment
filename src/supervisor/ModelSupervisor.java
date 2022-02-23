@@ -5,6 +5,16 @@ import recipe.ModelRecipe;
 
 import java.util.*;
 
+/**
+ *
+ * ModelSupervisor.java
+ * Zac King (U1758957)
+ *
+ * Last updated February 2022
+ *
+ * Models the Supervisor interface of the production scenario demo
+ *
+ */
 public class ModelSupervisor {
 
     private final ModelFeedBin[] bins;

@@ -15,6 +15,18 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+/**
+ *
+ * FeedBinGUI.java
+ * Zac King (U1758957)
+ *
+ * Last updated February 2022
+ *
+ * The GUI component of the demo. Provides a simulation of two interfaces, a Bin Controller "Controller" interface
+ * and Supervisor "Supervisor" interface, that internally run their controllers (Model-View-Controller) on separate
+ * threads to simulate two separate client programs.
+ *
+ */
 public class FeedBinGUI extends JFrame {
 
     private JPanel panelMain;
