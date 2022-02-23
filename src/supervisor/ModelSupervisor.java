@@ -108,6 +108,29 @@ public class ModelSupervisor {
 
         for (String currentIngredient : ingredientBinIndexMap.keySet()) {
 
+            double binVolumeSum = 0.0d;
+
+            for (int binIndex : ingredientBinIndexMap.get(currentIngredient))
+                binVolumeSum += bins[binIndex].getCurrentVolume();
+
+            if (binVolumeSum < ingredientAmountMap.get(currentIngredient)) {
+
+                this.batchFailureReason =
+                        "Error : Bins don't have enough ingredients to satisfy need of ingredient "
+                        + currentIngredient
+                        + System.lineSeparator()
+                        + "Need: "
+                        + ingredientAmountMap.get(currentIngredient) + "cm^3" + " | "
+                        + "Bins Contain: " + binVolumeSum + "cm^3";
+
+                return false;
+
+            }
+
+        }
+
+        for (String currentIngredient : ingredientBinIndexMap.keySet()) {
+
             double remainingAmount = ingredientAmountMap.get(currentIngredient);
 
             for (int binIndex : ingredientBinIndexMap.get(currentIngredient)) {
@@ -122,18 +145,10 @@ public class ModelSupervisor {
                 } else {
                     // If any bin can satisfy the remaining (or technically full) amount, e.g., you want 10.0 of x, and
                     // you received 10.0 of x, then removedAmount will be equal to remainingAmount, so you have thus
-                    // satisfied the production and can break the loop.
-                    ingredientAmountMap.replace(currentIngredient, 0.0d);
+                    // satisfied the production and can break the loop for this ingredient.
                     break;
                 }
 
-            }
-
-            if (ingredientAmountMap.get(currentIngredient) != 0.0d) {
-                // If there is still some ingredient to remove after querying all the bins, then there were not enough
-                // ingredients to satisfy the current batch.
-                this.batchFailureReason = "Error : no bins can satisfy ingredient amount for ingredient " + currentIngredient;
-                return false;
             }
 
         }
