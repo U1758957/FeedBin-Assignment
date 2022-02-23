@@ -70,6 +70,7 @@ public class ModelSupervisor {
         // Check if any bins contain ingredients, and assign ingredients their respective bin(s)
 
         Map<String, List<Integer>> ingredientBinIndexMap = new HashMap<>();
+
         ingredientBinIndexMap.put(ingredientOneName, new ArrayList<>());
         ingredientBinIndexMap.put(ingredientTwoName, new ArrayList<>());
 
@@ -92,6 +93,12 @@ public class ModelSupervisor {
         }
 
         // Check if any bins contain ingredients, and assign ingredients their respective bin(s)
+
+        // Check if a batch can be made up (and make up the batch by default)
+
+
+
+        // Check if a batch can be made up (and make up the batch by default)
 
         return true;
 
