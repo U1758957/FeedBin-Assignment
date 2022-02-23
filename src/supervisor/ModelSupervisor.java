@@ -3,9 +3,7 @@ package supervisor;
 import controller.ModelFeedBin;
 import recipe.ModelRecipe;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ModelSupervisor {
 
@@ -69,26 +67,31 @@ public class ModelSupervisor {
         String ingredientTwoName = ingredientTwoSplit[0];
         double ingredientTwoAmount = Double.parseDouble(ingredientTwoSplit[1]);
 
-        boolean[] binContainsIngredients = new boolean[] {false, false};
+        // Check if any bins contain ingredients, and assign ingredients their respective bin(s)
 
-        for (ModelFeedBin bin : bins) {
+        Map<String, List<Integer>> ingredientBinIndexMap = new HashMap<>();
+        ingredientBinIndexMap.put(ingredientOneName, new ArrayList<>());
+        ingredientBinIndexMap.put(ingredientTwoName, new ArrayList<>());
 
-            if (bin.getProductName().equals(ingredientOneName)) binContainsIngredients[0] = true;
-            if (bin.getProductName().equals(ingredientTwoName)) binContainsIngredients[1] = true;
+        for (int i = 0; i < bins.length; i++) {
 
-            if (binContainsIngredients[0] & binContainsIngredients[1]) break;
+            if (bins[i].getProductName().equals(ingredientOneName)) ingredientBinIndexMap.get(ingredientOneName).add(i);
+            else if (bins[i].getProductName().equals(ingredientTwoName)) ingredientBinIndexMap.get(ingredientTwoName).add(i);
 
         }
 
-        if (! binContainsIngredients[0]) {
-            this.batchFailureReason = "Error! No Feed Bin contains ingredient " + ingredientOneName;
-            return false;
+        for (String ingredientName : ingredientBinIndexMap.keySet()) {
+
+            if (ingredientBinIndexMap.get(ingredientName).size() == 0) {
+
+                this.batchFailureReason = "Error! No Feed Bin contains ingredient " + ingredientName;
+                return false;
+
+            }
+
         }
 
-        if (! binContainsIngredients[1]) {
-            this.batchFailureReason = "Error! No Feed Bin contains ingredient " + ingredientTwoName;
-            return false;
-        }
+        // Check if any bins contain ingredients, and assign ingredients their respective bin(s)
 
         return true;
 
