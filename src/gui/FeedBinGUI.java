@@ -51,6 +51,7 @@ public class FeedBinGUI extends JFrame {
     private JTextArea textAreaBatchList;
     private JButton buttonProcessNextBatch;
     private JTextArea textAreaAllBinsInspection;
+    private JLabel labelProductionSchedule;
 
     private ModelFeedBin[] bins;
 
@@ -373,6 +374,7 @@ public class FeedBinGUI extends JFrame {
 
         this.buttonInspectAllBins.setText("Inspect All Bins");
 
+        this.labelProductionSchedule.setText("Production Schedule");
         this.buttonProcessNextBatch.setText("Process Next Batch");
 
         // Supervisor Controller Interface Init
