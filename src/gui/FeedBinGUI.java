@@ -395,9 +395,9 @@ public class FeedBinGUI extends JFrame {
 
         this.bins = new ModelFeedBin[3]; // 3 bins as defined in the specification
 
-        this.bins[0] = new ModelFeedBin(0, "Cornmeal"); // Manually declaring starting bins for demo
-        this.bins[1] = new ModelFeedBin(1, "Crushed Flakes");
-        this.bins[2] = new ModelFeedBin(2, "Crushed Flakes");
+        this.bins[0] = new ModelFeedBin(0, "Weety Bits"); // Manually declaring starting bins for demo
+        this.bins[1] = new ModelFeedBin(1, "Bitty Weets");
+        this.bins[2] = new ModelFeedBin(2, "Bitty Weets");
 
         for (ModelFeedBin bin : bins) bin.addProduct(bin.getMaxVolume()); // Fill up the bins for the demo
 
