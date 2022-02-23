@@ -56,6 +56,11 @@ public class ModelSupervisor {
 
     public boolean processBatch(String batch) {
 
+        if (batch.equals("")) {
+            this.batchFailureReason = "Error : No batch to make up!";
+            return false;
+        }
+
         String[] batchSplit = batch.split(" -> ")[1].split("_");
 
         String[] ingredientOneSplit = batchSplit[0].split("-");
