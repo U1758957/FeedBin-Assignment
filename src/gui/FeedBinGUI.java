@@ -64,6 +64,8 @@ public class FeedBinGUI extends JFrame {
 
         buttonExit.addActionListener(e -> {
 
+            this.controllerService.shutdown(); // Just tells the JVM that the service will not be accepting new submits
+
             boolean shutdown = false;
 
             try {
@@ -395,8 +397,6 @@ public class FeedBinGUI extends JFrame {
 
         this.controllerService.submit(controller);
         this.controllerService.submit(supervisor);
-
-        this.controllerService.shutdown(); // Just tells the JVM that the service will not be accepting new submits
 
     }
 
